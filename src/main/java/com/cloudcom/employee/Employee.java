@@ -22,7 +22,7 @@ public class Employee {
             generator = "employee_sequence"
     )
     private Long id;
-    private String name;
+    private String username;
     private String password;
     private Integer tokens;
 
@@ -31,19 +31,19 @@ public class Employee {
     }
 
     public Employee(Long id,
-                    String name,
+                    String username,
                     String password,
                     Integer tokens) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.password = password;
         this.tokens = tokens;
     }
 
-    public Employee(String name,
+    public Employee(String username,
                     String password,
                     Integer tokens) {
-        this.name = name;
+        this.username = username;
         this.password = password;
         this.tokens = tokens;
     }
@@ -56,12 +56,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -84,7 +84,7 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", tokens=" + tokens +
                 '}';

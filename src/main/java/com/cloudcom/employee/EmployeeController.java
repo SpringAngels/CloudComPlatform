@@ -1,5 +1,6 @@
 package com.cloudcom.employee;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,27 +10,27 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/employees")
+@RequestMapping("api/v1/employees")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private final EmployeeDetailsService employeeDetailsService;
 
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public EmployeeController(EmployeeDetailsService employeeDetailsService) {
+        this.employeeDetailsService = employeeDetailsService;
     }
 
     @GetMapping
-    public List<Employee> findAllEmployees() {
-        return employeeService.findAllEmployees();
+    public List<Employee> getAllEmployees() {
+        return employeeDetailsService.getAllEmployees();
     }
 
     @PostMapping
     public void saveEmployee(@RequestBody Employee employee) {
-        employeeService.saveEmployee(employee);
+        employeeDetailsService.createEmployee(employee);
     }
 
-    @PostMapping(path = "delete")
+    @DeleteMapping
     public void deleteAllEmployees() {
-        employeeService.deleteAllEmployees();
+        employeeDetailsService.deleteEmployees();
     }
 }

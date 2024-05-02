@@ -1,6 +1,6 @@
 package com.cloudcom.security;
 
-import com.cloudcom.employee.EmployeeDetailsService;
+import com.cloudcom.employee.EmployeeService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,12 +12,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class ApplicationSecurityConfig {
 
-    private final EmployeeDetailsService employeeDetailsService;
+    private final EmployeeService employeeService;
     private final PasswordEncoder passwordEncoder;
 
-    public ApplicationSecurityConfig(EmployeeDetailsService employeeDetailsService,
+    public ApplicationSecurityConfig(EmployeeService employeeService,
                                      PasswordEncoder passwordEncoder) {
-        this.employeeDetailsService = employeeDetailsService;
+        this.employeeService = employeeService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -34,7 +34,7 @@ public class ApplicationSecurityConfig {
                         .authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home")
+                        .defaultSuccessUrl("/home", true)
                         .permitAll())
                 .logout(logout -> logout.logoutSuccessUrl("/login"));
         return http.build();
@@ -44,7 +44,7 @@ public class ApplicationSecurityConfig {
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider
                 = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(employeeDetailsService);
+        provider.setUserDetailsService(employeeService);
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }

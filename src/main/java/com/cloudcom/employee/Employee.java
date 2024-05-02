@@ -6,10 +6,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee implements UserDetails {
 
     @Id
     @SequenceGenerator(
@@ -48,22 +52,12 @@ public class Employee {
         this.tokens = tokens;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    @Override
     public String getPassword() {
         return password;
     }
@@ -72,21 +66,28 @@ public class Employee {
         this.password = password;
     }
 
-    public Integer getTokens() {
-        return tokens;
-    }
-
-    public void setTokens(Integer tokens) {
-        this.tokens = tokens;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", tokens=" + tokens +
-                '}';
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

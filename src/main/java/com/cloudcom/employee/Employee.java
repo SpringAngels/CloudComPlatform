@@ -52,6 +52,14 @@ public class Employee implements UserDetails {
         this.tokens = tokens;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getTokens() {
+        return tokens;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

@@ -51,4 +51,8 @@ public class EmployeeService implements UserDetailsService {
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
+
+    public void deleteAllEmployees() {
+        employeeRepository.deleteAll();
+    }
 }

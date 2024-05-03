@@ -28,7 +28,8 @@ public class ApplicationSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/images/**",
                                 "/sign-up",
-                                "/api/v*/employees/**")
+                                "/api/v*/employees/**",
+                                "/registration")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

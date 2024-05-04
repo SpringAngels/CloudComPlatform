@@ -6,7 +6,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService implements UserDetailsService {
@@ -54,5 +56,13 @@ public class EmployeeService implements UserDetailsService {
 
     public void deleteAllEmployees() {
         employeeRepository.deleteAll();
+    }
+
+    public List<Employee> getSortedEmployees() {
+        return employeeRepository
+                .findAll()
+                .stream()
+                .sorted(Comparator.comparing(Employee::getTokens))
+                .collect(Collectors.toList());
     }
 }

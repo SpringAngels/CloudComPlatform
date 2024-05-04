@@ -27,6 +27,7 @@ public class ApplicationSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/images/**",
+                                "/css/**",
                                 "/sign-up",
                                 "/api/v*/employees/**",
                                 "/registration")

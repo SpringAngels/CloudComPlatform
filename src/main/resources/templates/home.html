@@ -3,9 +3,27 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/css/home-page.css">
     <title>Home</title>
 </head>
 <body>
 <h1>Welcome to home!</h1>
+
+<table class="content-table">
+    <thead>
+    <tr>
+        <th>Имя сотрудника</th>
+        <th>Количество токенов</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Итерация по списку объектов и вывод их в таблицу -->
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.username}"></td>
+        <td th:text="${employee.tokens}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

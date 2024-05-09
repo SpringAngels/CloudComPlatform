@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/css/home-page.css">
-    <title>Home</title>
+    <!--<link rel="stylesheet" href="style.css">-->
+    <title>Share</title>
 </head>
 <body>
 
-<nav>
+<!-- <nav>
     <div class="wrapper">
         <object data="/images/cloudcom_logo.png" width="60" height="60"></object>
         <div class="logo"><a href="/home">CloudCom</a></div>
@@ -21,25 +21,20 @@
             <li><a href="/logout">Log out</a></li>
         </ul>
     </div>
-</nav>
+</nav> -->
 
-<div style="display: flex; align-items: center; justify-content: center; padding-top: 300px;">
-<table class="content-table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Tokens</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Итерация по списку объектов и вывод их в таблицу -->
-    <tr th:each="employee : ${employees}">
-        <td th:text="${employee.username}"></td>
-        <td th:text="${employee.tokens}"></td>
-    </tr>
-    </tbody>
-</table>
-</div>
+
+<h1>Simple HTML Form</h1>
+
+<form action="/share" method="post">
+
+    <label>Who do you want to send your tokens to?</label>
+    <input type="text" name="receiverName" required><br><br>
+    <label>Amount of tokens</label>
+    <input type="number" name="tokensToSend" required><br><br>
+    <input type="submit" value="Send">
+
+</form>
 
 </body>
 </html>

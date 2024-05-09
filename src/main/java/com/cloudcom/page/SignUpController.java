@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("logout")
-public class LogOutPageController {
+@RequestMapping("sign-up")
+public class SignUpController {
 
     @GetMapping
-    public String logout() {
-        return "logout";
+    public String signUp() {
+        return "sign-up";
     }
 }

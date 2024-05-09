@@ -14,7 +14,8 @@ public class RegistrationService {
     }
 
     public void register(RegistrationRequest request) {
-        int employeeTokens = 0;
+        // given when registered, may vary
+        int employeeTokens = 100;
 
         employeeService.signUpEmployee(
                 new Employee(

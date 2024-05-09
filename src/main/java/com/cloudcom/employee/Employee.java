@@ -60,6 +60,10 @@ public class Employee implements UserDetails {
         return tokens;
     }
 
+    public void setTokens(Integer tokens) {
+        this.tokens = tokens;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -97,5 +101,15 @@ public class Employee implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", tokens=" + tokens +
+                '}';
     }
 }

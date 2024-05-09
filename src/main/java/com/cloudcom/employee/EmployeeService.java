@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,10 +33,8 @@ public class EmployeeService implements UserDetailsService {
                         String.format(EMPLOYEE_NOT_FOUND_MESSAGE, username)));
     }
 
-    public String signUpEmployee(Employee employee) {
-        boolean employeeExists = employeeRepository
-                .findByUsername(employee.getUsername())
-                .isPresent();
+    public void signUpEmployee(Employee employee) {
+        boolean employeeExists = employeeExists(employee.getUsername());
 
         if (employeeExists) {
             throw new IllegalStateException("username already taken");
@@ -46,8 +45,6 @@ public class EmployeeService implements UserDetailsService {
         employee.setPassword(encodedPassword);
 
         employeeRepository.save(employee);
-
-        return "employee has been registered";
     }
 
     public List<Employee> getAllEmployees() {
@@ -58,11 +55,25 @@ public class EmployeeService implements UserDetailsService {
         employeeRepository.deleteAll();
     }
 
+    public boolean employeeExists(String username) {
+        return employeeRepository
+                .findByUsername(username)
+                .isPresent();
+    }
+
+    public Optional<Employee> findEmployeeByUsername(String username) {
+        return employeeRepository.findByUsername(username);
+    }
+
+    public void updateTokens(String username, Integer tokens) {
+        employeeRepository.updateTokens(username, tokens);
+    }
+
     public List<Employee> getSortedEmployees() {
         return employeeRepository
                 .findAll()
                 .stream()
-                .sorted(Comparator.comparing(Employee::getTokens))
+                .sorted(Comparator.comparing(Employee::getTokens).reversed()) // from greatest to lowest for the table
                 .collect(Collectors.toList());
     }
 }

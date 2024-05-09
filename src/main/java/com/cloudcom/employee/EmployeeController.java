@@ -20,8 +20,8 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public String register(@RequestBody Employee employee) {
-        return employeeService.signUpEmployee(employee);
+    public void register(@RequestBody Employee employee) {
+        employeeService.signUpEmployee(employee);
     }
 
     @GetMapping

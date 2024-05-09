@@ -1,4 +1,4 @@
-package com.cloudcom.page;
+package com.cloudcom.page.home;
 
 import com.cloudcom.employee.Employee;
 import com.cloudcom.employee.EmployeeService;
@@ -11,11 +11,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("home")
-public class HomePageController {
+public class HomeController {
 
     private final EmployeeService employeeService;
 
-    public HomePageController(EmployeeService employeeService) {
+    public HomeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 

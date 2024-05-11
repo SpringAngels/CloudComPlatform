@@ -39,7 +39,7 @@ public class SharingService {
             );
         }
 
-        employeeService.updateTokens(senderName,senderTokens - tokensToSend);
+        employeeService.updateTokens(senderName, senderTokens - tokensToSend);
         employeeService.updateTokens(receiverName, tokensToSend);
     }
 }
